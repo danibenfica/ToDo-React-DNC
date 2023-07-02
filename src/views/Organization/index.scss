@@ -1,0 +1,46 @@
+@use "../../sass/variables" as *;
+
+h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $p-white;
+    margin-top: 20px;
+    font-family: $p-Raleway;
+}
+
+.organizationP {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    font-family: $p-Raleway;
+    font-size: 20px;
+    font-weight: 400;
+    color: $p-white;
+
+}
+
+.howToUse {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    list-style: none;
+    font-size: 20px;
+    font-family: $p-Raleway;
+    color: $p-white;
+    padding: 20px;
+}
+
+.tips {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    list-style:circle;
+    font-size: 20px;
+    font-family: $p-Raleway;
+    color: $p-white;
+    padding: 40px;
+}
