@@ -3,6 +3,11 @@
 
 ## Projeto da Lista de Tarefas em React
 
+Para acessar a Lista de tarefas, clique no link abaixo:
+
+[Lista de Tarefas](https://react-vite-to-do-list.netlify.app/)
+
+
 Este projeto foi desenvolvido em React e consiste em uma aplicação simples de Lista de Tarefas, na qual os usuários podem adicionar, editar e excluir tarefas. Irei explicar a estrutura do projeto e destacar alguns trechos de código importantes.
 
 ### Tecnologias utilizadas:
