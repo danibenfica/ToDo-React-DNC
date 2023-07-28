@@ -37,6 +37,147 @@ Vite
 
 5. Após a conclusão da instalação das dependências, execute o comando `npm start` ou `yarn start`. Isso iniciará o servidor de desenvolvimento e abrirá o projeto no seu navegador padrão.
 
+## Nova funcionalidade, modo claro e escuro
+
+Nesta versão é possível alterar o tema da aplicação, sendo modo claro ou escuro.
+
+## O que foi feito: 
+
+1. **Criando o Tema Claro e Escuro:**
+   - Foi implementado o conceito de tema claro e escuro para o projeto, permitindo que o usuário alterne entre os dois modos visuais.
+   - Foram criados arquivos de estilo separados para cada tema, `index.scss` e `indexLight.scss`, e importados nos componentes correspondentes para que a aparência do aplicativo mude dinamicamente com base no tema selecionado.
+
+2. **Criando o Contexto de Tema:**
+   - Foi criado um contexto de tema usando o React Context API, que permite compartilhar o estado do tema entre os componentes da aplicação.
+   - O contexto de tema foi definido em `ThemeContext.js`, onde é utilizado o hook `useState` para gerenciar o estado do tema (claro ou escuro).
+   - Foi implementada a função `toggleTheme` para alternar entre o tema claro e escuro quando o usuário clica no botão de alternância.
+
+3. **Adicionando Ícones do Sol e Lua para a Alternância de Tema:**
+   - Foram adicionados ícones do sol e da lua ao projeto para representar visualmente o tema claro e escuro.
+   - No componente `Principal.jsx`, um botão de alternância de tema foi adicionado. O ícone do sol é exibido quando o tema é claro e o ícone da lua é exibido quando o tema é escuro.
+
+4. **Integrando o Tema Claro e Escuro no Componente `ToDo`:**
+   - No componente `ToDo.jsx`, foram importadas as imagens dos ícones correspondentes para os temas claro e escuro, permitindo que o botão de alternância de tema mude de acordo com o tema selecionado.
+   - As classes de estilo também foram atualizadas para se adaptar aos temas claro e escuro.
+
+5. **Criando o Componente `HeaderOrganization`:**
+   - Foi criado o componente `HeaderOrganization.jsx`, que é responsável por renderizar o cabeçalho da página `Organization`.
+   - O componente exibe o título da página e outros elementos de cabeçalho.
+
+6. **Aplicando Tema Claro e Escuro no Componente `Organization`:**
+   - No componente `Organization.jsx`, foram aplicados os temas claro e escuro para os estilos das seções de texto usando as classes de estilo correspondentes.
+   - O botão de alternância de tema também foi adicionado ao componente `Organization`, permitindo que o usuário alterne o tema entre claro e escuro.
+
+7. **Atualizando o Componente `Principal`:**
+   - O componente `Principal.jsx` foi atualizado para mostrar o título principal da aplicação, incluindo a alternância de tema.
+
+8. **Estilizando o Botão de Alternância de Tema:**
+   - Foi criado um botão de alternância de tema estilizado no arquivo `index.scss` e `indexLight.scss`, que desliza da posição do sol para a posição da lua (ou vice-versa) quando o usuário alterna entre os temas.
+   - O ícone do sol e da lua é exibido dentro do botão e alterado conforme o tema selecionado.
+   - A alteração foi aplicada em todos os componentes.
+
+
+### Explicação da nova funcionalidade
+
+Esta versão utiliza o contexto de tema para fornecer suporte a temas claro e escuro. O contexto é criado no arquivo `ThemeContext.jsx` e inclui o estado `isLightMode` e a função `toggleTheme`, que permite alternar entre os temas. Abaixo estão as partes relevantes do código:
+
+```jsx
+
+import { createContext, useContext, useState } from 'react';
+
+const ThemeContext = createContext();
+
+export const ThemeProvider = ({ children }) => {
+  const [isLightMode, setIsLightMode] = useState(true);
+
+  const toggleTheme = () => {
+    setIsLightMode((prevMode) => !prevMode);
+  };
+
+  return (
+    <ThemeContext.Provider value={{ isLightMode, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+};
+
+export const useTheme = () => useContext(ThemeContext);
+```
+
+Neste código, o contexto é criado com `createContext()` e o provedor `ThemeProvider` é definido. O provedor envolve a árvore de componentes, permitindo que os componentes filhos acessem o estado e a função de tema através do hook `useTheme` sem a necessidade de passar props manualmente.
+
+A variável `isLightMode` é o estado que armazena a informação sobre o tema atual. A função `toggleTheme` permite alternar entre os temas claro e escuro, atualizando o valor de `isLightMode` com base no estado anterior.
+
+### Componentes Relacionados ao Tema
+
+Além disso, vários componentes utilizam o contexto de tema para aplicar os estilos corretos com base no tema atual. Por exemplo, no arquivo `Principal.jsx`:
+
+```jsx
+
+import React, { useEffect } from 'react';
+import { useTheme } from '../../../ThemeContext';
+import './index.scss';
+import './indexLight.scss';
+
+const Principal = () => {
+  const { isLightMode } = useTheme();
+
+  const headingClassName = isLightMode ? 'h12' : 'h1';
+
+  const setBodyBackground = () => {
+    document.body.classList.remove('dark-theme', 'light-theme');
+    document.body.classList.add(isLightMode ? 'light-theme' : 'dark-theme');
+  };
+
+  useEffect(() => {
+    setBodyBackground();
+  }, [isLightMode]);
+
+  return (
+    <h1 className={headingClassName}>Otimize seu tempo e se organize com o nosso Planejador Diário.</h1>
+  );
+}
+
+export default Principal;
+
+```
+
+Neste exemplo, o componente `Principal` utiliza o hook `useTheme` para obter o valor de `isLightMode`. Com base nesse valor, o componente aplica a classe CSS correta (`'h1'` ou `'h12'`) para o estilo do cabeçalho.
+
+### Arquivos de Estilo
+
+Para aplicar os estilos com base no tema, o aplicativo inclui arquivos de estilo separados para os temas claro e escuro. Por exemplo, em `index.scss`:
+
+```scss
+
+.h1 {
+    color: $p-white;
+    font-family: $p-Poppins;
+    padding-top: 145px;
+    padding-left: 64px;
+    display: flex;
+    justify-content: center;
+}
+
+```
+
+E em `indexLight.scss`:
+
+```scss
+
+.h12 {
+    color: $p-black-letters;
+    font-family: $p-Poppins;
+    padding-top: 145px;
+    padding-left: 64px;
+    display: flex;
+    justify-content: center;
+}
+
+```
+
+Esses arquivos de estilo contêm os estilos específicos para cada tema e são importados e aplicados dinamicamente nos componentes com base no valor de `isLightMode`.
+
 
 ### Estrutura do Projeto
 
