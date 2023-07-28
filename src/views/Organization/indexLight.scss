@@ -1,16 +1,16 @@
 @use "../../sass/variables" as *;
 
-.subtitle {
+.subtitleL {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: $p-white;
+    color: $p-black-letters;
     margin-top: 20px;
     margin-left: 30px;
     font-family: $p-Raleway;
 }
 
-.organizationP {
+.organizationPL {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,11 +18,11 @@
     font-family: $p-Raleway;
     font-size: 20px;
     font-weight: 400;
-    color: $p-white;
+    color: $p-black-letters;
 
 }
 
-.howToUse {
+.howToUseL {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -30,11 +30,11 @@
     list-style: none;
     font-size: 20px;
     font-family: $p-Raleway;
-    color: $p-white;
+    color: $p-black-letters;
     padding: 20px;
 }
 
-.tips {
+.tipsL {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -42,39 +42,6 @@
     list-style:circle;
     font-size: 20px;
     font-family: $p-Raleway;
-    color: $p-white;
+    color: $p-black-letters;
     padding: 40px;
 }
-
-
-.theme-toggle-containerOrg {
-    position: relative;
-    width: 100px;
-    height: 40px;
-  }
-  
-  .theme-toggle-buttonOrg {
-    position: absolute !important;
-    top: 20px;
-    margin-left: 20px;
-    width: 40px;
-    height: 40px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    transition: left 0.3s ease-in-out;
-  }
-  
-  .theme-toggle-buttonOrg img {
-    width: 100%;
-    height: 100%;
-  }
-  
-  .theme-toggle-buttonOrg.sun {
-    left: 0;
-  }
-  
-  .theme-toggle-buttonOrg.moon {
-    left: 60px;
-  }
-  

@@ -1,12 +1,12 @@
 @use "../../sass/variables" as *;
 
-.new-task-input {
+.new-task-inputL {
     display: flex;
     width: 279px;
     height: 35px;
     flex-direction: column;
     flex-shrink: 0;
-    color: $p-white;
+    color: $p-black-letters;
     font-size: 25px;
     font-family: $p-Raleway;
     font-style: italic;
@@ -15,24 +15,23 @@
     margin-bottom: 281px;
     list-style: none;
     margin-top: 50px;
-    background-color: $p-black-bg;
     
 }
 
 
-.new-task-input::placeholder {
-    color: $p-white;
+.new-task-inputL::placeholder {
+    color: $p-black-letters;
     list-style: none;
 }
 
 
-.task-name {
+.task-nameL {
     display: flex;
     width: 192px;
     height: 35px;
     flex-direction: column;
     flex-shrink: 0;
-    color: $p-white;
+    color: $p-black-letters;
     font-size: 25px;
     font-family: $p-Raleway;
     margin-left: 391px;
@@ -48,17 +47,18 @@
     list-style: none;
   }
   
-  .edit-input {
+  .edit-inputL {
     display: flex;
     width: 192px;
     height: 35px;
     flex-direction: column;
     flex-shrink: 0;
-    color: $p-white;
+    color: $p-black-letters;
     font-size: 25px;
     font-family: $p-Raleway;
     margin-left: 391px;
     list-style: none;
+
     
   }
   
@@ -91,7 +91,7 @@
   
 }
 
-.edit-task-input{
+.edit-task-inputL{
   display: flex;
   flex-direction: column;
   width: 300px;
@@ -105,6 +105,7 @@
   border: 1px solid $p-black-letters-modal;
   font-family: $p-Raleway;
   font-size: 25px;
+
 }
 .add-task-container {
   display: flex;
@@ -120,7 +121,7 @@
   margin-top: -250px !important;
 }
 
-.add-task-input {
+.add-task-inputL {
   display: flex;
   width: 300px;
   height: 50px;
@@ -135,48 +136,16 @@
   
 }
 
-.theme-toggle-container {
-  position: relative;
-  width: 100px;
-  height: 40px;
-}
-
-.theme-toggle-button {
-  position: absolute;
-  margin-top: -350px;
-  margin-left: 20px;
-  width: 40px;
-  height: 40px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  transition: left 0.3s ease-in-out;
-}
-
-.theme-toggle-button img {
-  width: 100%;
-  height: 100%;
-}
-
-.theme-toggle-button.sun {
-  left: 0;
-}
-
-.theme-toggle-button.moon {
-  left: 60px;
-}
-
-
 
 
 
 @media only screen and (min-width: 320px) and (max-width: 480px) {
-  .new-task-input {
+  .new-task-inputL {
     margin-left: 20px;
     font-size: 18px;
   }
 
-  .task-name {
+  .task-nameL {
     margin-left: 20px;
     font-size: 15px;
   }
@@ -209,19 +178,15 @@
   margin-left: -15px;
 }
 
-.edit-task-input {
+.edit-task-inputL {
   width: 150px;
   margin-left: 70px;
   height: 40px;
 }
 
-.add-task-input {
+.add-task-inputL {
   width: 200px;
   margin-left: 40px !important;
-}
-
-.theme-toggle-button {
-  top: 60px;
 }
 
 }

@@ -1,19 +1,19 @@
 @use "../../sass/variables" as *;
 
-.modal-overlay {
+.modal-overlayL {
     position: absolute;
     top: 329px;
     left: 334px;
     width: 758px;
     height: 436px;
-    background-color: $p-white;
+    background-color: $p-ligthModal;
     border-radius: 10px;
 }
 
-.modal-content {
-    background-color: $p-white;
+.modal-contentL {
+    background-color: $p-ligthModal;
 
-    .text {
+    .textL{
         display: flex;
         width: 454px;
         flex-direction: column;
@@ -26,10 +26,10 @@
         line-height: normal;
         margin-top: 70px;
         margin-left: 168px;
-        background-color: $p-white;
+        background-color: $p-ligthModal;
     }
 
-    .firstButton {
+    .firstButtonL {
         width: 268.419px;
         height: 77px;
         flex-shrink: 0;
@@ -47,7 +47,7 @@
         cursor: pointer;
     }
 
-    .firstButton:hover{
+    .firstButtonL:hover{
         background-color: $p-buttonHoverBlue;
     }
 
@@ -73,7 +73,8 @@
         color: $p-white;
     }
 
-    .paragraph {
+
+    .paragraphL {
         display: flex;
         width: 476px;
         flex-direction: column;
@@ -86,7 +87,7 @@
         line-height: normal;
         margin-left: 141px;
         margin-top: 57px;
-        background-color: $p-white ;
+        background-color: $p-ligthModal ;
         align-items: center;
         justify-content: center;
     }
@@ -96,26 +97,27 @@
 }
 
 @media only screen and (min-width: 320px) and (max-width: 480px) {
-    .modal-overlay {
+    .modal-overlayL {
         width: 300px;
         left: 10px;
         border-radius: 20px;
     }
 
-    .text {
+    .textL 
+    {
         width: 250px !important;
         font-size: 20px !important;
         margin-left: 40px !important;
     }
 
 
-    .paragraph {
+    .paragraphL {
         margin-left: 15px !important;
         width: 250px !important;
         
     }
 
-    .firstButton {
+    .firstButtonL {
         width: 100px !important;
         height: 40px !important;
         font-size: 18px !important;

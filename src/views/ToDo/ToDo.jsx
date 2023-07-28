@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './index.scss';
 import editIcon from '../../assets/edit.png';
 import deleteIcon from '../../assets/delete.png';
 import checkboxIcon from '../../assets/checkbox.png';
@@ -9,6 +8,7 @@ import CustomModal from '../../components/Modal/Modal';
 import Principal from '../../components/Principal/Principal';
 import Header from '../../components/Header/Header';
 import plusIcon from '../../assets/plus.png';
+import './index.scss'
 
 const ToDo = () => {
   const [tasks, setTasks] = useState([
