@@ -1,14 +1,21 @@
-import "./index.scss"
+import "./index.scss";
+import "./indexLight.scss";
+import { useTheme } from '../../../ThemeContext';
 
 const Modal = ({ isOpen, children }) => {
+    const { isLightMode } = useTheme();
+    
     if (!isOpen) return null;
 
+    const modalOverlay = isLightMode ? 'modal-overlayL' : 'modal-overlay';
+    const modalContent = isLightMode ? 'modal-contentL' : 'modal-content';
+
     return (
-    <div className="modal-overlay">
-        <div className="modal-content">
-            {children}
+        <div className={modalOverlay}>
+            <div className={modalContent}>
+                {children}
+            </div>
         </div>
-    </div>
     );
 };
 

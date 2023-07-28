@@ -1,16 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import './index.scss';
+import './indexLight.scss';
 import editIcon from '../../assets/edit.png';
+import editIconL from '../../assets/editL.png';
 import deleteIcon from '../../assets/delete.png';
+import deleteIconL from '../../assets/deleteL.png';
 import checkboxIcon from '../../assets/checkbox.png';
+import checkboxIconL from '../../assets/checkboxL.png';
 import checkedIcon from '../../assets/checked.png';
+import checkedIconL from '../../assets/checkedL.png';
+import plusIcon from '../../assets/plus.png';
+import plusIconL from '../../assets/plusL.png'
 import TaskHeaders from '../../components/TaskHeaders/TaskHeaders';
 import CustomModal from '../../components/Modal/Modal';
 import Principal from '../../components/Principal/Principal';
 import Header from '../../components/Header/Header';
-import plusIcon from '../../assets/plus.png';
-import './index.scss'
+import sunIcon from '../../assets/sun.png';
+import moonIcon from '../../assets/moon.png';
+import { useTheme } from '../../../ThemeContext';
+
+
 
 const ToDo = () => {
+
+
+  const { toggleTheme } = useTheme();
+
+  const handleThemeToggle = () => {
+    toggleTheme(); 
+  };
+
   const [tasks, setTasks] = useState([
     { taskName: 'Limpar a casa', taskStatus: false },
     { taskName: 'Responder e-mails', taskStatus: false },
@@ -107,19 +126,40 @@ const ToDo = () => {
     setShowAddModal(false);
   };
 
+  const { isLightMode } = useTheme();
+
+
+  const newTaskInput = isLightMode ? 'new-task-inputL task-input' : 'new-task-input task-input';
+  const taskName = isLightMode ? 'task-nameL' : 'task-name';
+  const checkboxSrc = isLightMode ? checkboxIconL : checkboxIcon;
+  const checkedSrc = isLightMode ? checkedIconL : checkedIcon;
+  const editIconSrc = isLightMode ? editIconL : editIcon;
+  const deleteIconSrc = isLightMode ? deleteIconL : deleteIcon;
+  const plusIconSrc = isLightMode ? plusIconL : plusIcon;
+  const text = isLightMode ? 'textL' : 'text';
+  const paragraph = isLightMode ? 'paragraphL' : 'paragraph';
+  const modButton = isLightMode ? 'firstButtonL' : 'firstButton';
+
+
+
   return (
     <>
       <Header />
       <Principal />
       <TaskHeaders />
       <div className="container">
-        <ul className="list-items">
+      <div className="theme-toggle-container">
+        <button className={`theme-toggle-button ${isLightMode ? 'moon' : 'sun'}`} onClick={handleThemeToggle}>
+          <img src={isLightMode ? moonIcon : sunIcon} alt="Alternar Tema" />
+        </button>
+      </div>      
+      <ul className="list-items">
           {tasks.map((task, index) => (
             <li key={index} className="task-item">
               <div className="task-content">
-                <span className="task-name">{task.taskName}</span>
+                <span className={taskName}>{task.taskName}</span>
                 <img
-                  src={task.taskStatus ? checkedIcon : checkboxIcon}
+                  src={task.taskStatus ? checkboxSrc : checkedSrc}
                   alt="Checkbox"
                   onClick={() => handleTaskStatusChange(index)}
                   className="checkbox-icon"
@@ -127,13 +167,13 @@ const ToDo = () => {
               </div>
               <div className="task-buttons">
                 <img
-                  src={editIcon}
+                  src={editIconSrc}
                   alt="Editar"
                   className="icon edit-icon"
                   onClick={() => handleEditTask(index)}
                 />
                 <img
-                  src={deleteIcon}
+                  src={deleteIconSrc}
                   alt="Excluir"
                   className="icon delete-icon"
                   onClick={() => handleDeleteTask(index)}
@@ -149,10 +189,10 @@ const ToDo = () => {
             onChange={(e) => setNewTask(e.target.value)}
             onKeyPress={handleKeyPress} 
             placeholder="Nova Tarefa..."
-            className="new-task-input task-input"
+            className={newTaskInput}
           />
           <img
-            src={plusIcon}
+            src={plusIconSrc}
             alt="Adicionar"
             className="icon add-icon"
             onClick={handleAddTaskModal}
@@ -160,9 +200,9 @@ const ToDo = () => {
         </div>
       </div>
       <CustomModal isOpen={confirmEdit} onClose={handleCancelEdit}>
-        <h2>Deseja editar esse ítem?</h2>
-        <p>{selectedTaskName}</p>
-        <button className="firstButton" onClick={handleCancelEdit}>
+        <h2 className={text}>Deseja editar esse ítem?</h2>
+        <p className={paragraph}>{selectedTaskName}</p>
+        <button className={modButton} onClick={handleCancelEdit}>
           Não
         </button>
         <button className="secondButton" onClick={handleConfirmEdit}>
@@ -174,14 +214,14 @@ const ToDo = () => {
           isOpen={showEditModal}
           onClose={() => setShowEditModal(false)}
         >
-          <h2>Editar Tarefa</h2>
+          <h2 className={text}>Editar Tarefa</h2>
           <input
             type="text"
             value={editedTaskName}
             onChange={(e) => setEditedTaskName(e.target.value)}
             className="edit-task-input"
           />
-          <button className="firstButton" onClick={handleSaveEdit}>
+          <button className={modButton} onClick={handleSaveEdit}>
             Salvar
           </button>
           <button
@@ -193,9 +233,9 @@ const ToDo = () => {
         </CustomModal>
       )}
       <CustomModal isOpen={confirmDelete} onClose={handleCancelDelete}>
-        <h2>Deseja excluir esse ítem?</h2>
-        <p>{selectedTaskName}</p>
-        <button className="firstButton" onClick={handleCancelDelete}>
+        <h2 className={text}>Deseja excluir esse ítem?</h2>
+        <p className={paragraph}>{selectedTaskName}</p>
+        <button className={modButton} onClick={handleCancelDelete}>
           Não
         </button>
         <button className="secondButton" onClick={handleConfirmDelete}>
@@ -204,14 +244,14 @@ const ToDo = () => {
       </CustomModal>
       {showAddModal && (
         <CustomModal isOpen={showAddModal} onClose={handleCancelAddTask}>
-          <h2>Adicionar Tarefa</h2>
+          <h2 className={text}>Adicionar Tarefa</h2>
           <input
             type="text"
             value={newTask}
             onChange={(e) => setNewTask(e.target.value)}
             className="add-task-input"
           />
-          <button className="firstButton" onClick={addTask}>
+          <button className={modButton} onClick={addTask}>
             Adicionar
           </button>
           <button className="secondButton" onClick={handleCancelAddTask}>
